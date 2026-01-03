@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leading Product Design at etika - Jarryd Hennequin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Rethink Sans', sans-serif;
+        }
+        #password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #password-overlay.hidden {
+            display: none;
+        }
+        #main-content {
+            display: none;
+        }
+        #main-content.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Password Overlay -->
+    <div id="password-overlay">
+        <div class="max-w-md w-full mx-4">
+            <div class="text-center mb-8">
+                <h1 class="text-2xl font-bold mb-2">Protected Content</h1>
+                <p class="text-gray-400">Please enter the password to view this project.</p>
+            </div>
+            <form id="password-form" class="space-y-4">
+                <div>
+                    <input
+                        type="password"
+                        id="password-input"
+                        placeholder="Enter password"
+                        class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-white transition-colors"
+                        autocomplete="off"
+                    >
+                </div>
+                <p id="password-error" class="text-red-500 text-sm hidden">Incorrect password. Please try again.</p>
+                <button
+                    type="submit"
+                    class="w-full px-4 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition-colors"
+                >
+                    View Project
+                </button>
+            </form>
+            <div class="mt-6 text-center">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition-colors text-sm">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <!-- Navigation -->
+        <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-gray-800">
+            <div class="max-w-6xl mx-auto px-6 py-4">
+                <div class="flex justify-between items-center">
+                    <a href="../index.html" class="text-xl font-bold hover:text-gray-300 transition-colors">Jarryd Hennequin</a>
+                    <div class="flex gap-8">
+                        <a href="../index.html#work" class="hover:text-gray-300 transition-colors">Work</a>
+                        <a href="../index.html#about" class="hover:text-gray-300 transition-colors">About</a>
+                        <a href="../index.html#contact" class="hover:text-gray-300 transition-colors">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="pt-32 pb-16 px-6">
+            <div class="max-w-4xl mx-auto">
+                <a href="../index.html#work" class="inline-flex items-center text-gray-400 hover:text-white transition-colors mb-8">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Back to Work
+                </a>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Leading Product Design at etika</h1>
+                <p class="text-xl text-gray-400 leading-relaxed">
+                    As etika's first designer, I established design's role in this fintech startup. I created platforms, websites, and design systems while conducting user research. Key projects improved customer experiences and streamlined operations, showcasing design's impact on startup success.
+                </p>
+            </div>
+        </section>
+
+        <!-- Hero Image -->
+        <section class="pb-16 px-6">
+            <div class="max-w-6xl mx-auto">
+                <img
+                    src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e538d1d1ec992ebc8deb2_merchant08.png"
+                    alt="etika merchant portal interface"
+                    class="w-full rounded-lg"
+                >
+            </div>
+        </section>
+
+        <!-- About etika -->
+        <section class="py-16 px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-8">About etika</h2>
+                <p class="text-gray-300 leading-relaxed">
+                    Founded in 2014, etika is a fintech start-up committed to making fair finance accessible to everyone. The company offers affordable, tailored financial solutions to customers, whenever and wherever they need it.
+                </p>
+            </div>
+        </section>
+
+        <!-- The Challenge -->
+        <section class="py-16 px-6 border-t border-gray-800">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-8">The Challenge of Being the First Designer</h2>
+                <p class="text-gray-300 leading-relaxed mb-6">
+                    As the first designer at etika, I faced the unique challenge of establishing design's role in an early-stage start-up environment. This meant working closely with various departments and balancing multiple responsibilities:
+                </p>
+                <ul class="space-y-3 text-gray-300">
+                    <li class="flex items-start">
+                        <span class="text-white mr-3">•</span>
+                        <span>Designing a new platform and design system</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-white mr-3">•</span>
+                        <span>Creating and managing a global website</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-white mr-3">•</span>
+                        <span>Developing the brand</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-white mr-3">•</span>
+                        <span>Establishing design principles</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-white mr-3">•</span>
+                        <span>Conducting user research</span>
+                    </li>
+                </ul>
+                <p class="text-gray-300 leading-relaxed mt-6">
+                    The key to success was building strong relationships across the organisation, being open to feedback, and demonstrating the value of design in achieving business goals.
+                </p>
+            </div>
+        </section>
+
+        <!-- Key Projects -->
+        <section class="py-16 px-6 border-t border-gray-800">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-12">Key Projects</h2>
+
+                <!-- Project 1: Website -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold mb-6">1. Global Website Development and Management</h3>
+
+                    <p class="text-gray-300 mb-4"><strong class="text-white">Challenge:</strong> Create and maintain a global website that effectively communicates etika's mission and services.</p>
+
+                    <p class="text-gray-300 mb-2"><strong class="text-white">Approach:</strong></p>
+                    <ul class="space-y-2 text-gray-300 mb-4">
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Built the website using Webflow</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Single-handedly managed and updated the site for 3 years</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Ensured responsive design and optimal user experience across devices</span>
+                        </li>
+                    </ul>
+
+                    <p class="text-gray-300 mb-8"><strong class="text-white">Outcome:</strong> A robust, user-friendly website that served as the primary digital touchpoint for etika's global audience.</p>
+
+                    <img
+                        src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54ab22ece21c841d57e6_670e538055ca69440a85ad58_website.png"
+                        alt="etika website design"
+                        class="w-full rounded-lg"
+                    >
+                </div>
+
+                <!-- Project 2: Portals -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold mb-6">2. Customer and Merchant Portals Design</h3>
+
+                    <p class="text-gray-300 mb-4"><strong class="text-white">Challenge:</strong> Design intuitive and efficient portals for both customers and merchants.</p>
+
+                    <p class="text-gray-300 mb-2"><strong class="text-white">Approach:</strong></p>
+                    <ul class="space-y-2 text-gray-300 mb-4">
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Created a comprehensive design system</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Supported a team of 20 developers with consistent UI components</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Ensured seamless user experience across both portals</span>
+                        </li>
+                    </ul>
+
+                    <p class="text-gray-300 mb-8"><strong class="text-white">Outcome:</strong> A cohesive and user-friendly interface for both customers and merchants, streamlining operations and enhancing user satisfaction.</p>
+
+                    <div class="space-y-6">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54ac22ece21c841d580f_670e53c13eeaa2e2f3f84033_merchant02.png"
+                            alt="Merchant portal interface"
+                            class="w-full rounded-lg"
+                        >
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54ac22ece21c841d5800_670e53cd55ca69440a85eae7_merchant03.png"
+                            alt="Merchant portal dashboard"
+                            class="w-full rounded-lg"
+                        >
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54ab22ece21c841d57e9_670e53d51b9df286f65d83c1_merchant07.png"
+                            alt="Merchant portal analytics"
+                            class="w-full rounded-lg"
+                        >
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54ac22ece21c841d57f7_670e53ee429c71c439ddaf00_merchant05.png"
+                            alt="Merchant portal features"
+                            class="w-full rounded-lg"
+                        >
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54ac22ece21c841d57fa_670e53ae191effdf497e1389_merchant01.png"
+                            alt="Merchant portal overview"
+                            class="w-full rounded-lg"
+                        >
+                    </div>
+                </div>
+
+                <!-- Project 3: AIA Vitality -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold mb-6">3. AIA Vitality Apple Watch Campaign Integration</h3>
+
+                    <p class="text-gray-300 mb-4"><strong class="text-white">Challenge:</strong> Design the integration between etika and AIA Vitality platforms for the Apple Watch campaign.</p>
+
+                    <p class="text-gray-300 mb-2"><strong class="text-white">Approach:</strong></p>
+                    <ul class="space-y-2 text-gray-300 mb-4">
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Designed the user flow for Apple Watch funding through etika</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Created a seamless integration between both platforms</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Focused on user experience to encourage high conversion rates</span>
+                        </li>
+                    </ul>
+
+                    <p class="text-gray-300 mb-8"><strong class="text-white">Outcome:</strong> Achieved and maintained a conversion rate of over 80%, significantly contributing to the campaign's success.</p>
+
+                    <img
+                        src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54ab22ece21c841d57ef_670e53ff3817ff2c77f8e009_referrals-1.png"
+                        alt="AIA Vitality integration"
+                        class="w-full rounded-lg"
+                    >
+                </div>
+
+                <!-- Project 4: Referrals -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold mb-6">4. Referrals: Streamlining Application Reviews</h3>
+
+                    <p class="text-gray-300 mb-4"><strong class="text-white">Challenge:</strong> Efficiently review and process applications referred due to credit score issues while maintaining a positive user experience.</p>
+
+                    <p class="text-gray-300 mb-2"><strong class="text-white">Approach:</strong></p>
+                    <ul class="space-y-2 text-gray-300 mb-4">
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Implemented configurable credit score measures</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Allowed users to complete applications with notification of review</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Redesigned report page using AI to show only relevant information</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Created streamlined review process for agents</span>
+                        </li>
+                    </ul>
+
+                    <p class="text-gray-300 mb-8"><strong class="text-white">Outcome:</strong> Improved agent efficiency in reviewing referred applications, maintained positive user experience, and enhanced risk management procedures. System allows agents to approve, decline, or place applications on hold based on clear, AI-curated information.</p>
+
+                    <div class="space-y-6">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54ac22ece21c841d5803_670e541e7901db783f12fe43_referrals-3.png"
+                            alt="Referrals system interface"
+                            class="w-full rounded-lg"
+                        >
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54ab22ece21c841d57ec_670e5426339ed219d38e1c49_referrals-2.png"
+                            alt="Referrals review screen"
+                            class="w-full rounded-lg"
+                        >
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54ac22ece21c841d57fd_670e543227b970e2037f63d3_referrals-4.png"
+                            alt="Referrals dashboard"
+                            class="w-full rounded-lg"
+                        >
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54ac22ece21c841d5835_670e543fa08e65772c19770e_referrals-5.png"
+                            alt="Referrals workflow"
+                            class="w-full rounded-lg"
+                        >
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54ac22ece21c841d5809_670e544896f51436f63b36ab_referrals-6.png"
+                            alt="Referrals analytics"
+                            class="w-full rounded-lg"
+                        >
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54a922ece21c841d57cd_670e545518d68c850fd18001_referrals-10.png"
+                            alt="Referrals summary"
+                            class="w-full rounded-lg"
+                        >
+                    </div>
+                </div>
+
+                <!-- Project 5: Vulnerable Customers -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold mb-6">5. Supporting Vulnerable Customers</h3>
+
+                    <p class="text-gray-300 mb-4"><strong class="text-white">Challenge:</strong> Optimise the back office system to better serve customers facing hardships or vulnerabilities.</p>
+
+                    <p class="text-gray-300 mb-2"><strong class="text-white">Approach:</strong></p>
+                    <ul class="space-y-2 text-gray-300 mb-4">
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Interviewed operations department staff</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Conducted secondary research on vulnerable customers</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Created customer journey maps for prevalent scenarios</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Identified overlapping vulnerabilities</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-white mr-3">•</span>
+                            <span>Designed high-level concepts for stakeholder consensus</span>
+                        </li>
+                    </ul>
+
+                    <p class="text-gray-300 mb-8"><strong class="text-white">Outcome:</strong> Implemented a system to flag vulnerable customers and alert agents, enhancing customer support (in development as of March 2022).</p>
+
+                    <div class="space-y-6">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54ac22ece21c841d580c_670e547acd2b668f6b9db793_Image.png"
+                            alt="Vulnerable customers research"
+                            class="w-full rounded-lg"
+                        >
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54ac22ece21c841d5832_670e5483216393f9b48a6679_Hero.png"
+                            alt="Vulnerable customers journey map"
+                            class="w-full rounded-lg"
+                        >
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670e54ac22ece21c841d5806_670e548dd8568093c6e3c3e3_Image-1.png"
+                            alt="Vulnerable customers system design"
+                            class="w-full rounded-lg"
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lessons Learned -->
+        <section class="py-16 px-6 border-t border-gray-800">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-8">Lessons Learned</h2>
+                <ol class="space-y-4 text-gray-300">
+                    <li class="flex items-start">
+                        <span class="text-white font-bold mr-3">1.</span>
+                        <span><strong class="text-white">Versatility is essential:</strong> As the sole designer, I had to master various skills from web development to complex system integrations.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-white font-bold mr-3">2.</span>
+                        <span><strong class="text-white">Design systems drive efficiency:</strong> Creating a robust design system was crucial in supporting a large development team and ensuring consistency across platforms.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-white font-bold mr-3">3.</span>
+                        <span><strong class="text-white">User-centric approach pays off:</strong> Focusing on user needs, even in B2B contexts, leads to more effective solutions and higher conversion rates.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-white font-bold mr-3">4.</span>
+                        <span><strong class="text-white">Collaboration is key:</strong> Working closely with different departments and external partners helps integrate design into the company's DNA and drives successful outcomes.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-white font-bold mr-3">5.</span>
+                        <span><strong class="text-white">Continuous learning:</strong> Stay updated with fintech regulations, industry trends, and new technologies to design compliant and innovative solutions.</span>
+                    </li>
+                </ol>
+                <p class="text-gray-300 leading-relaxed mt-8">
+                    This experience at etika has been a transformative journey, showcasing the impact of thoughtful design in shaping a start-up's product, culture, and success across various digital touchpoints.
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-16 px-6 border-t border-gray-800">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                    <div>
+                        <p class="text-2xl font-bold mb-2">Let's work together</p>
+                        <a href="mailto:jarrydhennequin@gmail.com" class="text-gray-400 hover:text-white transition-colors">jarrydhennequin@gmail.com</a>
+                    </div>
+                    <div class="flex gap-6">
+                        <a href="https://linkedin.com/in/jarrydhennequin" target="_blank" class="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="mt-12 pt-8 border-t border-gray-800 text-gray-500 text-sm">
+                    <p>&copy; 2025 Jarryd Hennequin. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Password Protection Script -->
+    <script>
+        const CORRECT_PASSWORD = 'password1';
+        const AUTH_KEY = 'portfolio_authenticated';
+
+        const passwordOverlay = document.getElementById('password-overlay');
+        const mainContent = document.getElementById('main-content');
+        const passwordForm = document.getElementById('password-form');
+        const passwordInput = document.getElementById('password-input');
+        const passwordError = document.getElementById('password-error');
+
+        function checkAuth() {
+            if (localStorage.getItem(AUTH_KEY) === 'true') {
+                showContent();
+            }
+        }
+
+        function showContent() {
+            passwordOverlay.classList.add('hidden');
+            mainContent.classList.add('visible');
+        }
+
+        passwordForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (passwordInput.value === CORRECT_PASSWORD) {
+                localStorage.setItem(AUTH_KEY, 'true');
+                showContent();
+            } else {
+                passwordError.classList.remove('hidden');
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        });
+
+        // Check authentication on page load
+        checkAuth();
+    </script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Research Product | Jarryd Hennequin</title>
+    <meta name="description" content="Designed an AI-powered research assistant for Monash University, enabling data-driven investment decisions with intuitive visualisations and scalable architecture.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts - Rethink Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Rethink Sans', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#000000',
+                        'secondary': '#ffffff',
+                        'gray': {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .text-balance {
+            text-wrap: balance;
+        }
+
+        /* Password Protection Styles */
+        #password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #password-overlay.hidden {
+            display: none;
+        }
+
+        #main-content {
+            display: none;
+        }
+
+        #main-content.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-black text-white">
+
+    <!-- Password Protection Overlay -->
+    <div id="password-overlay">
+        <div class="max-w-md w-full mx-6">
+            <div class="text-center mb-8">
+                <h1 class="text-2xl font-bold mb-2">Protected Content</h1>
+                <p class="text-gray-400">Please enter the password to view this project.</p>
+            </div>
+            <form id="password-form" class="space-y-4">
+                <input
+                    type="password"
+                    id="password-input"
+                    placeholder="Enter password"
+                    class="w-full px-4 py-3 bg-gray-900 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-gray-500"
+                    autocomplete="off"
+                >
+                <p id="password-error" class="text-red-500 text-sm hidden">Incorrect password. Please try again.</p>
+                <button
+                    type="submit"
+                    class="w-full px-4 py-3 bg-white text-black font-medium hover:bg-gray-200 transition-colors"
+                >
+                    View Project
+                </button>
+            </form>
+            <div class="mt-6 text-center">
+                <a href="../index.html" class="text-sm text-gray-400 hover:text-white transition-colors">
+                    &larr; Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (hidden until authenticated) -->
+    <div id="main-content">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="text-lg font-semibold tracking-tight">Jarryd Hennequin</a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../index.html#about" class="text-sm text-gray-400 hover:text-white transition-colors">About</a>
+                    <a href="../index.html#services" class="text-sm text-gray-400 hover:text-white transition-colors">Services</a>
+                    <a href="../index.html#work" class="text-sm text-gray-400 hover:text-white transition-colors">Work</a>
+                    <a href="../index.html#experience" class="text-sm text-gray-400 hover:text-white transition-colors">Experience</a>
+                    <a href="../index.html#contact" class="px-4 py-2 text-sm font-medium bg-white text-black hover:bg-gray-200 transition-colors">Get in Touch</a>
+                </div>
+                <!-- Mobile menu button -->
+                <button class="md:hidden p-2" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden border-t border-gray-800" id="mobile-menu">
+            <div class="px-6 py-4 space-y-3">
+                <a href="../index.html#about" class="block text-sm text-gray-400 hover:text-white">About</a>
+                <a href="../index.html#services" class="block text-sm text-gray-400 hover:text-white">Services</a>
+                <a href="../index.html#work" class="block text-sm text-gray-400 hover:text-white">Work</a>
+                <a href="../index.html#experience" class="block text-sm text-gray-400 hover:text-white">Experience</a>
+                <a href="../index.html#contact" class="block text-sm font-medium text-white">Get in Touch</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 lg:pt-40 lg:pb-24">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8">
+            <!-- Back link -->
+            <a href="../index.html#work" class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors mb-8">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                Back to Work
+            </a>
+
+            <!-- Project Meta -->
+            <div class="flex flex-wrap gap-4 mb-6">
+                <span class="px-3 py-1 text-xs font-medium uppercase tracking-wider border border-gray-700 text-gray-400">Monash University</span>
+                <span class="px-3 py-1 text-xs font-medium uppercase tracking-wider border border-gray-700 text-gray-400">AI Product</span>
+                <span class="px-3 py-1 text-xs font-medium uppercase tracking-wider border border-gray-700 text-gray-400">2024</span>
+            </div>
+
+            <!-- Title -->
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6 text-balance">
+                AI-Powered Research Product
+            </h1>
+
+            <!-- Introduction -->
+            <p class="text-xl md:text-2xl text-gray-400 leading-relaxed">
+                Designed an AI-powered research assistant for Monash University, enabling data-driven investment decisions. Created intuitive visualisations and scalable architecture, resulting in improved efficiency and securing funding for wider deployment across Australian institutions.
+            </p>
+        </div>
+    </section>
+
+    <!-- Hero Image -->
+    <section class="pb-16 lg:pb-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="aspect-video w-full overflow-hidden border border-gray-800">
+                <img
+                    src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670f95b58f06a1fe32097146_monash06.png"
+                    alt="Monash AI-Powered Research Assistant"
+                    class="w-full h-full object-cover"
+                >
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <article class="pb-24 lg:pb-32">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8">
+
+            <!-- Challenge Section -->
+            <section class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-6">Challenge</h2>
+                <div class="space-y-4 text-gray-400 text-lg leading-relaxed">
+                    <p>
+                        Monash University sought to create an innovative tool that would empower their business development representatives to make more informed decisions about research investment. The key challenges were:
+                    </p>
+                    <ol class="list-decimal list-inside space-y-2 ml-4">
+                        <li>Identifying trending and underfunded research areas in a vast sea of scholarly works.</li>
+                        <li>Creating a user-friendly interface that could visualise complex data relationships.</li>
+                        <li>Developing a tool that could compete in the market and potentially be white-labeled for other institutions.</li>
+                        <li>Ensuring the tool was intuitive enough for business development representatives who may not have deep technical expertise.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Approach Section -->
+            <section class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-6">Approach</h2>
+                <div class="space-y-4 text-gray-400 text-lg leading-relaxed">
+                    <p>
+                        To address these challenges, we implemented a comprehensive, user-centered design process:
+                    </p>
+                    <ol class="list-decimal list-inside space-y-3 ml-4">
+                        <li><strong class="text-white">Conceptualisation</strong>: Collaborated closely with the primary client stakeholder from the initial idea stage to shape the tool's functionality and potential.</li>
+                        <li><strong class="text-white">Competitor Analysis</strong>: Conducted thorough research on existing solutions to benchmark the user experience and identify opportunities for differentiation.</li>
+                        <li><strong class="text-white">Ideation and Low-Fidelity Prototyping</strong>: Generated potential product concepts and created low-fidelity wireframes to define core functionalities.</li>
+                        <li><strong class="text-white">Usability Testing</strong>: Developed clickable prototypes to test feature desirability and usability with potential users.</li>
+                        <li><strong class="text-white">Visual Design</strong>: Created a visually appealing and intuitive interface that effectively communicated complex data relationships.</li>
+                        <li><strong class="text-white">Development Collaboration</strong>: Worked closely with the development team to refine the tool's intricacies and ensure smooth implementation of design concepts.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Image Gallery -->
+            <section class="mb-16">
+                <div class="grid gap-6">
+                    <div class="border border-gray-800 overflow-hidden">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670f971e4574394ee0b3b6d3_670f95df49131713c402cd95_monash01.png"
+                            alt="Monash AI Research Tool - Dashboard View"
+                            class="w-full"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="border border-gray-800 overflow-hidden">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670f971e4574394ee0b3b6db_670f96fa21d3ec7bcb09dea8_monash02.png"
+                            alt="Monash AI Research Tool - Data Visualization"
+                            class="w-full"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="border border-gray-800 overflow-hidden">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670f971e4574394ee0b3b6c5_670f9704a00205c293799a5e_monash03.png"
+                            alt="Monash AI Research Tool - Research Trends"
+                            class="w-full"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="border border-gray-800 overflow-hidden">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670f971e4574394ee0b3b6ca_670f970a97ebe19383233711_monash04.png"
+                            alt="Monash AI Research Tool - Analysis View"
+                            class="w-full"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="border border-gray-800 overflow-hidden">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670f971e4574394ee0b3b6d6_670f97122f92b00ff187f3f5_monash05.png"
+                            alt="Monash AI Research Tool - Detailed Insights"
+                            class="w-full"
+                            loading="lazy"
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <!-- Opportunities Section -->
+            <section class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-6">Opportunities</h2>
+                <div class="space-y-4 text-gray-400 text-lg leading-relaxed">
+                    <ol class="list-decimal list-inside space-y-3 ml-4">
+                        <li><strong class="text-white">AI-Driven Data Analysis</strong>: Implemented advanced AI algorithms to identify trends and gaps in research funding across various disciplines.</li>
+                        <li><strong class="text-white">Interactive Data Visualisation</strong>: Designed intuitive visual representations of research trends, funding patterns, and potential opportunities.</li>
+                        <li><strong class="text-white">User-Friendly Interface</strong>: Created a streamlined interface that allows non-technical users to easily navigate and interpret complex data.</li>
+                        <li><strong class="text-white">Customisable Reporting</strong>: Developed features that enable users to generate tailored reports for different stakeholders.</li>
+                        <li><strong class="text-white">Scalable Architecture</strong>: Designed the system with white-labeling capabilities in mind, allowing for easy adaptation to other institutions.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Outcomes Section -->
+            <section class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-6">Outcomes and Impact</h2>
+                <div class="space-y-4 text-gray-400 text-lg leading-relaxed">
+                    <p>
+                        The Monash AI-Powered Research Assistant has achieved significant success:
+                    </p>
+                    <ol class="list-decimal list-inside space-y-3 ml-4">
+                        <li><strong class="text-white">Successful Initial Deployment</strong>: The tool was released to a select group of business development representatives at Monash University.</li>
+                        <li><strong class="text-white">Immediate Value Recognition</strong>: Users reported increased efficiency in identifying promising research areas and potential funding opportunities.</li>
+                        <li><strong class="text-white">Significant Funding Secured</strong>: The tool's success led to substantial funding for white-labeling and rolling out to various institutions across Australia.</li>
+                        <li><strong class="text-white">Enhanced Decision Making</strong>: Business development representatives now have data-driven insights to support their investment recommendations.</li>
+                        <li><strong class="text-white">Competitive Advantage</strong>: Monash University has positioned itself as a leader in research investment strategy, potentially opening new revenue streams through the tool's commercialisation.</li>
+                        <li><strong class="text-white">Scalability</strong>: The white-label potential demonstrates the tool's versatility and value across different academic institutions.</li>
+                    </ol>
+                    <p class="mt-6">
+                        This project showcases how innovative design thinking, combined with cutting-edge AI technology, can transform complex decision-making processes in academic research funding. By closely aligning with user needs and maintaining a focus on scalability, we created a tool that not only solves immediate challenges for Monash University but also has the potential to revolutionise research investment strategies across the academic landscape.
+                    </p>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="pt-8 border-t border-gray-800">
+                <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Interested in working together?</h3>
+                        <p class="text-gray-400">Let's discuss how I can help with your next project.</p>
+                    </div>
+                    <a href="../index.html#contact" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-white text-black hover:bg-gray-200 transition-colors">
+                        Get in Touch
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-gray-500">&copy; 2025 Jarryd Hennequin. All rights reserved.</p>
+                <div class="flex items-center gap-6">
+                    <a href="#" class="text-sm text-gray-500 hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="text-sm text-gray-500 hover:text-white transition-colors">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+
+    </div><!-- End main-content -->
+
+    <!-- Password Protection Script -->
+    <script>
+        const CORRECT_PASSWORD = 'password1';
+        const AUTH_KEY = 'portfolio_authenticated';
+
+        const passwordOverlay = document.getElementById('password-overlay');
+        const mainContent = document.getElementById('main-content');
+        const passwordForm = document.getElementById('password-form');
+        const passwordInput = document.getElementById('password-input');
+        const passwordError = document.getElementById('password-error');
+
+        // Check if already authenticated
+        function checkAuth() {
+            if (localStorage.getItem(AUTH_KEY) === 'true') {
+                showContent();
+            }
+        }
+
+        // Show the main content
+        function showContent() {
+            passwordOverlay.classList.add('hidden');
+            mainContent.classList.add('visible');
+        }
+
+        // Handle form submission
+        passwordForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (passwordInput.value === CORRECT_PASSWORD) {
+                localStorage.setItem(AUTH_KEY, 'true');
+                showContent();
+            } else {
+                passwordError.classList.remove('hidden');
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        });
+
+        // Check auth on page load
+        checkAuth();
+    </script>
+</body>
+</html>

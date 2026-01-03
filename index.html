@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarryd Hennequin | Strategic Partner for Product & AI</title>
+    <meta name="description" content="I help ambitious leaders build products that matter and harness AI to create competitive advantage.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts - Rethink Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Rethink Sans', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#000000',
+                        'secondary': '#ffffff',
+                        'gray': {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .grayscale-hover {
+            filter: grayscale(100%) brightness(0) invert(1);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .grayscale-hover:hover {
+            opacity: 1;
+        }
+
+        .text-balance {
+            text-wrap: balance;
+        }
+
+        /* Glass effect for service icons */
+        .glass-icon {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Consistent logo sizing */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+        }
+
+        .logo-container img {
+            max-height: 32px;
+            max-width: 120px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .tool-logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 32px;
+        }
+
+        .tool-logo-container img {
+            max-height: 24px;
+            max-width: 80px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-black text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="text-lg font-semibold tracking-tight">Jarryd Hennequin</a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="text-sm text-gray-400 hover:text-white transition-colors">About</a>
+                    <a href="#services" class="text-sm text-gray-400 hover:text-white transition-colors">Services</a>
+                    <a href="#work" class="text-sm text-gray-400 hover:text-white transition-colors">Work</a>
+                    <a href="#experience" class="text-sm text-gray-400 hover:text-white transition-colors">Experience</a>
+                    <a href="#contact" class="px-4 py-2 text-sm font-medium bg-white text-black hover:bg-gray-200 transition-colors">Get in Touch</a>
+                </div>
+                <!-- Mobile menu button -->
+                <button class="md:hidden p-2" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden border-t border-gray-800" id="mobile-menu">
+            <div class="px-6 py-4 space-y-3">
+                <a href="#about" class="block text-sm text-gray-400 hover:text-white">About</a>
+                <a href="#services" class="block text-sm text-gray-400 hover:text-white">Services</a>
+                <a href="#work" class="block text-sm text-gray-400 hover:text-white">Work</a>
+                <a href="#experience" class="block text-sm text-gray-400 hover:text-white">Experience</a>
+                <a href="#contact" class="block text-sm font-medium text-white">Get in Touch</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen pt-16 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Left: Content -->
+                <div class="order-2 lg:order-1">
+                    <p class="text-sm font-medium tracking-widest uppercase text-gray-500 mb-4">Strategic Partner</p>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6 text-balance">
+                        I help ambitious leaders build products that matter
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-400 mb-8 leading-relaxed">
+                        Product strategy, AI transformation, and hands-on execution. Turning complex challenges into competitive advantage.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-white text-black hover:bg-gray-200 transition-colors">
+                            Start a Conversation
+                        </a>
+                        <a href="#services" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium border border-white text-white hover:bg-white hover:text-black transition-colors">
+                            View Services
+                        </a>
+                    </div>
+                </div>
+                <!-- Right: Image (20-30% bigger) -->
+                <div class="order-1 lg:order-2 flex justify-center lg:justify-end">
+                    <div class="w-80 h-80 md:w-96 md:h-96 lg:w-[480px] lg:h-[480px] overflow-hidden">
+                        <img
+                            src="images/jarryd.png"
+                            alt="Jarryd Hennequin"
+                            class="w-full h-full object-cover grayscale"
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 lg:py-32 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6">About Me</h2>
+                    <div class="space-y-4 text-gray-400 text-lg leading-relaxed">
+                        <p>
+                            Most companies know they need AI and automation. Few know how to put it in place without wasting months on failed pilots.
+                        </p>
+                        <p>
+                            I help businesses by using enterprise innovation sprint methods. I've refined these through my work at Accenture, Cognizant, and high-growth startups. They need proven frameworks, not experimental ones. I specialise in turning complex AI strategies into functional automation systems. I use no-code platforms like Make.com and n8n for this.
+                        </p>
+                        <p>
+                            The result is smart workflows. They cut out manual tasks, lower errors, and grow operations. Best of all, they're ready in weeks, not quarters. Enterprise method, mid-market execution, measurable outcomes.
+                        </p>
+                        <p class="text-white font-medium">
+                            Melbourne-based, serving clients globally.
+                        </p>
+                    </div>
+                </div>
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-sm font-medium tracking-widest uppercase text-gray-500 mb-4">Focus Areas</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 text-sm border border-gray-700 text-gray-300">Product Strategy</span>
+                            <span class="px-3 py-1.5 text-sm border border-gray-700 text-gray-300">AI Transformation</span>
+                            <span class="px-3 py-1.5 text-sm border border-gray-700 text-gray-300">No-Code Automation</span>
+                            <span class="px-3 py-1.5 text-sm border border-gray-700 text-gray-300">UX Leadership</span>
+                            <span class="px-3 py-1.5 text-sm border border-gray-700 text-gray-300">Digital Products</span>
+                            <span class="px-3 py-1.5 text-sm border border-gray-700 text-gray-300">Innovation Sprints</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-medium tracking-widest uppercase text-gray-500 mb-6">Tools I Use</h3>
+                        <div class="grid grid-cols-6 gap-6">
+                            <div class="tool-logo-container"><img src="images/images/tools/figma.svg" alt="Figma" class="grayscale-hover" title="Figma"></div>
+                            <div class="tool-logo-container"><img src="images/images/tools/miro.svg" alt="Miro" class="grayscale-hover" title="Miro"></div>
+                            <div class="tool-logo-container"><img src="images/images/tools/airtable.svg" alt="Airtable" class="grayscale-hover" title="Airtable"></div>
+                            <div class="tool-logo-container"><img src="images/images/tools/anthropic.svg" alt="Claude" class="grayscale-hover" title="Claude"></div>
+                            <div class="tool-logo-container"><img src="images/images/tools/openai.svg" alt="OpenAI" class="grayscale-hover" title="OpenAI"></div>
+                            <div class="tool-logo-container"><img src="images/images/tools/make.svg" alt="Make" class="grayscale-hover" title="Make"></div>
+                            <div class="tool-logo-container"><img src="images/images/tools/n8n.svg" alt="n8n" class="grayscale-hover" title="n8n"></div>
+                            <div class="tool-logo-container"><img src="images/images/tools/zapier.svg" alt="Zapier" class="grayscale-hover" title="Zapier"></div>
+                            <div class="tool-logo-container"><img src="images/images/tools/framer.svg" alt="Framer" class="grayscale-hover" title="Framer"></div>
+                            <div class="tool-logo-container"><img src="images/images/tools/webflow.svg" alt="Webflow" class="grayscale-hover" title="Webflow"></div>
+                            <div class="tool-logo-container"><img src="images/images/tools/perplexity.svg" alt="Perplexity" class="grayscale-hover" title="Perplexity"></div>
+                            <div class="tool-logo-container"><img src="images/images/tools/gemini.svg" alt="Gemini" class="grayscale-hover" title="Gemini"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 lg:py-32 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="max-w-2xl mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Services</h2>
+                <p class="text-lg text-gray-400">Strategic support for product teams and leadership navigating complexity.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="p-8 border border-gray-800 hover:border-gray-600 transition-colors group">
+                    <div class="w-12 h-12 glass-icon rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Product Strategy</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Roadmap development, prioritisation frameworks, and strategic alignment. Turning vision into actionable plans.
+                    </p>
+                </div>
+                <!-- Service 2 -->
+                <div class="p-8 border border-gray-800 hover:border-gray-600 transition-colors group">
+                    <div class="w-12 h-12 glass-icon rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">AI & Automation</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Identifying AI opportunities, building business cases, and implementing no-code automation that delivers real value.
+                    </p>
+                </div>
+                <!-- Service 3 -->
+                <div class="p-8 border border-gray-800 hover:border-gray-600 transition-colors group">
+                    <div class="w-12 h-12 glass-icon rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Discovery & Research</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Customer interviews, problem framing, and opportunity validation. Understanding before building.
+                    </p>
+                </div>
+                <!-- Service 4 -->
+                <div class="p-8 border border-gray-800 hover:border-gray-600 transition-colors group">
+                    <div class="w-12 h-12 glass-icon rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Innovation Sprints</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Enterprise sprint methods adapted for mid-market. Structured collaboration that delivers outcomes in weeks, not quarters.
+                    </p>
+                </div>
+                <!-- Service 5 -->
+                <div class="p-8 border border-gray-800 hover:border-gray-600 transition-colors group">
+                    <div class="w-12 h-12 glass-icon rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Workflow Design</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Smart workflows that cut manual tasks, lower errors, and scale operations using Make.com and n8n.
+                    </p>
+                </div>
+                <!-- Service 6 -->
+                <div class="p-8 border border-gray-800 hover:border-gray-600 transition-colors group">
+                    <div class="w-12 h-12 glass-icon rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">UX Leadership</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        User experience strategy and design leadership. Creating products people love to use.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="py-24 lg:py-32 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="max-w-2xl mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Selected Work</h2>
+                <p class="text-lg text-gray-400">Case studies and projects showcasing product strategy, AI implementation, and design leadership.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1: Monash AI -->
+                <a href="projects/monash-ai-powered-research-assistant.html" class="group block">
+                    <div class="border border-gray-800 hover:border-gray-600 transition-colors overflow-hidden">
+                        <div class="aspect-video overflow-hidden">
+                            <img
+                                src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670f95b58f06a1fe32097146_monash06.png"
+                                alt="AI-Powered Research Product"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            >
+                        </div>
+                        <div class="p-6">
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-0.5 text-xs font-medium uppercase tracking-wider border border-gray-700 text-gray-500">Monash University</span>
+                                <span class="px-2 py-0.5 text-xs font-medium uppercase tracking-wider border border-gray-700 text-gray-500">AI Product</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 group-hover:text-gray-300 transition-colors">AI-Powered Research Product</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Designed an AI-powered research assistant enabling data-driven investment decisions with intuitive visualisations.
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <!-- Project 2: AGL Electrification -->
+                <a href="projects/agls-experience-vision.html" class="group block">
+                    <div class="border border-gray-800 hover:border-gray-600 transition-colors overflow-hidden">
+                        <div class="aspect-video overflow-hidden">
+                            <img
+                                src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670ff1ed3e5e5bd51c2e1b3c_agl1-p-1600.png"
+                                alt="AGL Electrification Product Strategy"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            >
+                        </div>
+                        <div class="p-6">
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-0.5 text-xs font-medium uppercase tracking-wider border border-gray-700 text-gray-500">AGL Energy</span>
+                                <span class="px-2 py-0.5 text-xs font-medium uppercase tracking-wider border border-gray-700 text-gray-500">Product Strategy</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 group-hover:text-gray-300 transition-colors">AGL's Experience Vision</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Led strategy and design for Australia's largest energy retailer, creating a unified customer experience vision for the electrification journey.
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <!-- Project 3: etika -->
+                <a href="projects/leading-design-at-etika.html" class="group block">
+                    <div class="border border-gray-800 hover:border-gray-600 transition-colors overflow-hidden">
+                        <div class="aspect-video overflow-hidden">
+                            <img
+                                src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/671018aae350a6afbca05cc9_IMG_0049.png"
+                                alt="Leading Product Design at etika"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            >
+                        </div>
+                        <div class="p-6">
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-0.5 text-xs font-medium uppercase tracking-wider border border-gray-700 text-gray-500">etika</span>
+                                <span class="px-2 py-0.5 text-xs font-medium uppercase tracking-wider border border-gray-700 text-gray-500">Design Leadership</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 group-hover:text-gray-300 transition-colors">Leading Product Design at etika</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Established and led the design function at a fintech startup, building customer and merchant portals for a buy-now-pay-later platform.
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 lg:py-32 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="max-w-2xl mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Experience</h2>
+                <p class="text-lg text-gray-400">Trusted by leading organisations across healthcare, finance, energy, and technology.</p>
+            </div>
+
+            <!-- Client Logos - Consistent sizing with more spacing -->
+            <div class="mb-20">
+                <h3 class="text-sm font-medium tracking-widest uppercase text-gray-500 mb-10">Clients & Partners</h3>
+                <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-12 gap-y-10">
+                    <div class="logo-container"><img src="images/images/clients/ANZ.svg" alt="ANZ" class="grayscale-hover"></div>
+                    <div class="logo-container"><img src="images/images/clients/accenture.svg" alt="Accenture" class="grayscale-hover"></div>
+                    <div class="logo-container"><img src="images/images/clients/origin.svg" alt="Origin" class="grayscale-hover"></div>
+                    <div class="logo-container"><img src="images/images/clients/agl.svg" alt="AGL" class="grayscale-hover"></div>
+                    <div class="logo-container"><img src="images/images/clients/cognizant.svg" alt="Cognizant" class="grayscale-hover"></div>
+                    <div class="logo-container"><img src="images/images/clients/fjord.svg" alt="Fjord" class="grayscale-hover"></div>
+                    <div class="logo-container"><img src="images/images/clients/monash.svg" alt="Monash University" class="grayscale-hover"></div>
+                    <div class="logo-container"><img src="images/images/clients/centrelink.svg" alt="Centrelink" class="grayscale-hover"></div>
+                    <div class="logo-container"><img src="images/images/clients/sensis.svg" alt="Sensis" class="grayscale-hover"></div>
+                    <div class="logo-container"><img src="images/images/clients/711.svg" alt="7-Eleven" class="grayscale-hover"></div>
+                    <div class="logo-container"><img src="images/images/clients/Tigerspike.svg" alt="Tigerspike" class="grayscale-hover"></div>
+                    <div class="logo-container"><img src="images/images/clients/VHS.svg" alt="VHS" class="grayscale-hover"></div>
+                </div>
+            </div>
+
+            <!-- Career Timeline - Better space utilization with 2-column grid -->
+            <div>
+                <h3 class="text-sm font-medium tracking-widest uppercase text-gray-500 mb-10">Career</h3>
+                <div class="grid md:grid-cols-2 gap-x-16 gap-y-6">
+                    <!-- Column 1 -->
+                    <div class="flex gap-6 py-4 border-b border-gray-800">
+                        <div class="text-sm text-gray-500 w-36 shrink-0">Sep 2022 - Present</div>
+                        <div>
+                            <h4 class="font-semibold text-white">AI Product Manager</h4>
+                            <p class="text-gray-400">Cognizant</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 py-4 border-b border-gray-800">
+                        <div class="text-sm text-gray-500 w-36 shrink-0">May 2022 - Sep 2022</div>
+                        <div>
+                            <h4 class="font-semibold text-white">Senior Product Designer</h4>
+                            <p class="text-gray-400">Virtually Human</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 py-4 border-b border-gray-800">
+                        <div class="text-sm text-gray-500 w-36 shrink-0">Nov 2019 - May 2022</div>
+                        <div>
+                            <h4 class="font-semibold text-white">Senior User Experience Designer</h4>
+                            <p class="text-gray-400">etika</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 py-4 border-b border-gray-800">
+                        <div class="text-sm text-gray-500 w-36 shrink-0">Jun 2019 - Nov 2019</div>
+                        <div>
+                            <h4 class="font-semibold text-white">Senior User Experience Designer</h4>
+                            <p class="text-gray-400">Tigerspike</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 py-4 border-b border-gray-800">
+                        <div class="text-sm text-gray-500 w-36 shrink-0">Apr 2018 - Jun 2019</div>
+                        <div>
+                            <h4 class="font-semibold text-white">Senior User Experience Designer</h4>
+                            <p class="text-gray-400">Origin Energy</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 py-4 border-b border-gray-800">
+                        <div class="text-sm text-gray-500 w-36 shrink-0">Jul 2015 - Apr 2018</div>
+                        <div>
+                            <h4 class="font-semibold text-white">User Experience Designer</h4>
+                            <p class="text-gray-400">Fjord / Reactive</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 lg:py-32 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="max-w-2xl">
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Let's Talk</h2>
+                <p class="text-lg text-gray-400 mb-8">
+                    Whether you're exploring AI opportunities, refining your product strategy, or building a new venture, I'd love to hear about what you're working on.
+                </p>
+                <div class="flex flex-col sm:flex-row flex-wrap gap-6 sm:gap-8">
+                    <a href="mailto:hello@jarrydhennequin.com" class="inline-flex items-center gap-3 text-lg hover:text-gray-300 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        Email
+                    </a>
+                    <a href="https://cal.com/jarryd-hennequin-hykdl0/15min" target="_blank" rel="noopener" class="inline-flex items-center gap-3 text-lg hover:text-gray-300 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        Book a Call
+                    </a>
+                    <a href="https://au.linkedin.com/in/jarryd-hennequin" target="_blank" rel="noopener" class="inline-flex items-center gap-3 text-lg hover:text-gray-300 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://www.youtube.com/@JarrydHennequin" target="_blank" rel="noopener" class="inline-flex items-center gap-3 text-lg hover:text-gray-300 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                        YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-gray-500">&copy; 2025 Jarryd Hennequin. All rights reserved.</p>
+                <div class="flex items-center gap-6">
+                    <a href="#" class="text-sm text-gray-500 hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="text-sm text-gray-500 hover:text-white transition-colors">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
