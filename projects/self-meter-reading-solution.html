@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Meter Reading Solution | Jarryd Hennequin</title>
+    <meta name="description" content="Developed a self-meter reading solution for Origin Energy to reduce disputed bills and costs. Over 2,000 submissions, $100,000+ saved, and improved customer satisfaction.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts - Rethink Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Rethink Sans', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#000000',
+                        'secondary': '#ffffff',
+                        'gray': {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .text-balance {
+            text-wrap: balance;
+        }
+
+        /* Password Protection Styles */
+        #password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #password-overlay.hidden {
+            display: none;
+        }
+
+        #main-content {
+            display: none;
+        }
+
+        #main-content.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-black text-white">
+
+    <!-- Password Protection Overlay -->
+    <div id="password-overlay">
+        <div class="max-w-md w-full mx-6">
+            <div class="text-center mb-8">
+                <h1 class="text-2xl font-bold mb-2">Protected Content</h1>
+                <p class="text-gray-400">Please enter the password to view this project.</p>
+            </div>
+            <form id="password-form" class="space-y-4">
+                <input
+                    type="password"
+                    id="password-input"
+                    placeholder="Enter password"
+                    class="w-full px-4 py-3 bg-gray-900 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-gray-500"
+                    autocomplete="off"
+                >
+                <p id="password-error" class="text-red-500 text-sm hidden">Incorrect password. Please try again.</p>
+                <button
+                    type="submit"
+                    class="w-full px-4 py-3 bg-white text-black font-medium hover:bg-gray-200 transition-colors"
+                >
+                    View Project
+                </button>
+            </form>
+            <div class="mt-6 text-center">
+                <a href="../index.html" class="text-sm text-gray-400 hover:text-white transition-colors">
+                    &larr; Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (hidden until authenticated) -->
+    <div id="main-content">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="text-lg font-semibold tracking-tight">Jarryd Hennequin</a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../index.html#about" class="text-sm text-gray-400 hover:text-white transition-colors">About</a>
+                    <a href="../index.html#services" class="text-sm text-gray-400 hover:text-white transition-colors">Services</a>
+                    <a href="../index.html#work" class="text-sm text-gray-400 hover:text-white transition-colors">Work</a>
+                    <a href="../index.html#experience" class="text-sm text-gray-400 hover:text-white transition-colors">Experience</a>
+                    <a href="../index.html#contact" class="px-4 py-2 text-sm font-medium bg-white text-black hover:bg-gray-200 transition-colors">Get in Touch</a>
+                </div>
+                <!-- Mobile menu button -->
+                <button class="md:hidden p-2" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden border-t border-gray-800" id="mobile-menu">
+            <div class="px-6 py-4 space-y-3">
+                <a href="../index.html#about" class="block text-sm text-gray-400 hover:text-white">About</a>
+                <a href="../index.html#services" class="block text-sm text-gray-400 hover:text-white">Services</a>
+                <a href="../index.html#work" class="block text-sm text-gray-400 hover:text-white">Work</a>
+                <a href="../index.html#experience" class="block text-sm text-gray-400 hover:text-white">Experience</a>
+                <a href="../index.html#contact" class="block text-sm font-medium text-white">Get in Touch</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 lg:pt-40 lg:pb-24">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8">
+            <!-- Back link -->
+            <a href="../index.html#work" class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors mb-8">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                Back to Work
+            </a>
+
+            <!-- Project Meta -->
+            <div class="flex flex-wrap gap-4 mb-6">
+                <span class="px-3 py-1 text-xs font-medium uppercase tracking-wider border border-gray-700 text-gray-400">Origin Energy</span>
+                <span class="px-3 py-1 text-xs font-medium uppercase tracking-wider border border-gray-700 text-gray-400">Product Design</span>
+                <span class="px-3 py-1 text-xs font-medium uppercase tracking-wider border border-gray-700 text-gray-400">User Research</span>
+            </div>
+
+            <!-- Title -->
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6 text-balance">
+                Self-Meter Reading Solution
+            </h1>
+
+            <!-- Introduction -->
+            <p class="text-xl md:text-2xl text-gray-400 leading-relaxed">
+                Developed a self-meter reading solution for Origin Energy to reduce disputed bills and costs. Through user-centered design and iterative testing, implemented a photo submission feature. Result: Over 2,000 submissions, $100,000+ saved, and improved customer satisfaction.
+            </p>
+        </div>
+    </section>
+
+    <!-- Hero Image -->
+    <section class="pb-16 lg:pb-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="aspect-video w-full overflow-hidden border border-gray-800">
+                <img
+                    src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670fa346c0ba7d9b8adbb9f3_Hero.avif"
+                    alt="Self-Meter Reading Solution"
+                    class="w-full h-full object-cover"
+                >
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <article class="pb-24 lg:pb-32">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8">
+
+            <!-- Challenge Section -->
+            <section class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-6">Challenge</h2>
+                <div class="space-y-4 text-gray-400 text-lg leading-relaxed">
+                    <p>
+                        Origin Energy, Australia's leading electricity, gas, and solar energy retailer, faced a significant problem:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Approximately 10% of electricity bills were disputed, requiring meter re-reads by distributors.</li>
+                        <li>This issue resulted in a $20 million loss due to associated costs.</li>
+                        <li>The company needed an innovative solution to reduce disputes and costs while improving customer satisfaction.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Workshop Images -->
+            <section class="mb-16">
+                <div class="grid gap-6">
+                    <div class="border border-gray-800 overflow-hidden">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670fa3c1290d3bb28e123f9a_670fa38db2b498a9018e42a9_Workshop-1.png"
+                            alt="Workshop Session 1"
+                            class="w-full"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="border border-gray-800 overflow-hidden">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670fa3c1290d3bb28e123f9d_670fa3936bc8364f92851d55_Workshop-2.png"
+                            alt="Workshop Session 2"
+                            class="w-full"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="border border-gray-800 overflow-hidden">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670fa3c0290d3bb28e123f59_670fa39a805f117b22319883_Workshop.png"
+                            alt="Workshop Session 3"
+                            class="w-full"
+                            loading="lazy"
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <!-- Approach Section -->
+            <section class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-6">Approach</h2>
+                <div class="space-y-4 text-gray-400 text-lg leading-relaxed">
+                    <p>
+                        We implemented a user-centered, data-driven approach to address this challenge:
+                    </p>
+                    <ol class="list-decimal list-inside space-y-3 ml-4">
+                        <li><strong class="text-white">Problem Exploration</strong>: Conducted workshops to uncover known opportunities and pain points.</li>
+                        <li><strong class="text-white">Collaborative Ideation</strong>: Ran sketching exercises with business partners and engineers, generating ideas such as:
+                            <ul class="list-disc list-inside ml-8 mt-2 space-y-1">
+                                <li>Using customer-submitted photos with OCR technology</li>
+                                <li>Implementing Mechanical Turk for meter reading</li>
+                                <li>Developing a voice-driven UI for streamlined data entry</li>
+                            </ul>
+                        </li>
+                        <li><strong class="text-white">MVP Testing</strong>: Created a Formstack-based MVP and sent it to 250 customers to test our assumptions.</li>
+                        <li><strong class="text-white">Data Analysis</strong>: Analysed user preferences, finding that 95% of customers preferred submitting a photo over manual entry.</li>
+                        <li><strong class="text-white">Iterative Improvement</strong>: After identifying issues with photo clarity, we refined instructions and ran another experiment, yielding improved results.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Meter and Flow Images -->
+            <section class="mb-16">
+                <div class="grid gap-6">
+                    <div class="border border-gray-800 overflow-hidden">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670fa3c0290d3bb28e123f60_670fa37c8d5ee6a0417d3f4a_Meters.png"
+                            alt="Meter Types"
+                            class="w-full"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="border border-gray-800 overflow-hidden">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670fa3c0290d3bb28e123f5d_670fa383df0f335523a38539_User%2520flow.png"
+                            alt="User Flow"
+                            class="w-full"
+                            loading="lazy"
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <!-- Opportunities Section -->
+            <section class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-6">Opportunities</h2>
+                <div class="space-y-4 text-gray-400 text-lg leading-relaxed">
+                    <ol class="list-decimal list-inside space-y-3 ml-4">
+                        <li><strong class="text-white">Customer Empowerment</strong>: Enabled customers to submit their own meter readings, reducing reliance on distributors.</li>
+                        <li><strong class="text-white">Photo Submission Feature</strong>: Implemented based on strong user preference (95%) from initial testing.</li>
+                        <li><strong class="text-white">Clear User Instructions</strong>: Developed precise guidelines to ensure high-quality, usable meter photos.</li>
+                        <li><strong class="text-white">Streamlined Process</strong>: Created a user-friendly interface for easy submission of meter readings.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- UI Images -->
+            <section class="mb-16">
+                <div class="grid gap-6">
+                    <div class="border border-gray-800 overflow-hidden">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670fa3c1290d3bb28e123f81_670fa35111bbbac7017ed3e7_Authentication.png"
+                            alt="Authentication Screen"
+                            class="w-full"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="border border-gray-800 overflow-hidden">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670fa3c1290d3bb28e123f84_670fa35911bbbac7017edd3d_Camera.png"
+                            alt="Camera Interface"
+                            class="w-full"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="border border-gray-800 overflow-hidden">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670fa3c1290d3bb28e123f6e_670fa3613c373987b899ba3c_Infographic.png"
+                            alt="Infographic"
+                            class="w-full"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="border border-gray-800 overflow-hidden">
+                        <img
+                            src="https://cdn.prod.website-files.com/670e47d20b40a6198d2abb61/670fa3c1290d3bb28e123f7e_670fa37409bee53d2127e0e8_Manual.png"
+                            alt="Manual Entry"
+                            class="w-full"
+                            loading="lazy"
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <!-- Outcomes Section -->
+            <section class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-6">Outcomes and Impact</h2>
+                <div class="space-y-4 text-gray-400 text-lg leading-relaxed">
+                    <p>
+                        The self-meter reading solution has delivered significant benefits:
+                    </p>
+                    <ol class="list-decimal list-inside space-y-3 ml-4">
+                        <li><strong class="text-white">Widespread Adoption</strong>: Over 2,000 submissions received for the self-meter read feature as of December 2018.</li>
+                        <li><strong class="text-white">Cost Savings</strong>: Origin Energy saved over $100,000 through reduced need for professional meter re-reads.</li>
+                        <li><strong class="text-white">Improved Customer Experience</strong>: Empowered customers with a convenient way to ensure accurate billing.</li>
+                        <li><strong class="text-white">Reduced Disputes</strong>: Lowered the number of bill disputes, improving customer satisfaction and reducing administrative burden.</li>
+                        <li><strong class="text-white">Data-Driven Decision Making</strong>: Validated assumptions through real-world testing, ensuring the solution met actual user needs and preferences.</li>
+                    </ol>
+                    <p class="mt-6">
+                        This project demonstrates how a user-centered, iterative approach can solve complex business problems while improving customer experience. By empowering customers to participate in the meter reading process, Origin Energy not only reduced costs but also increased customer engagement and satisfaction. The success of this initiative paves the way for further innovations in customer service within the energy sector.
+                    </p>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="pt-8 border-t border-gray-800">
+                <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Interested in working together?</h3>
+                        <p class="text-gray-400">Let's discuss how I can help with your next project.</p>
+                    </div>
+                    <a href="../index.html#contact" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-white text-black hover:bg-gray-200 transition-colors">
+                        Get in Touch
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-gray-500">&copy; 2025 Jarryd Hennequin. All rights reserved.</p>
+                <div class="flex items-center gap-6">
+                    <a href="#" class="text-sm text-gray-500 hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="text-sm text-gray-500 hover:text-white transition-colors">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+
+    </div><!-- End main-content -->
+
+    <!-- Password Protection Script -->
+    <script>
+        const CORRECT_PASSWORD = 'password1';
+        const AUTH_KEY = 'portfolio_authenticated';
+
+        const passwordOverlay = document.getElementById('password-overlay');
+        const mainContent = document.getElementById('main-content');
+        const passwordForm = document.getElementById('password-form');
+        const passwordInput = document.getElementById('password-input');
+        const passwordError = document.getElementById('password-error');
+
+        // Check if already authenticated
+        function checkAuth() {
+            if (localStorage.getItem(AUTH_KEY) === 'true') {
+                showContent();
+            }
+        }
+
+        // Show the main content
+        function showContent() {
+            passwordOverlay.classList.add('hidden');
+            mainContent.classList.add('visible');
+        }
+
+        // Handle form submission
+        passwordForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (passwordInput.value === CORRECT_PASSWORD) {
+                localStorage.setItem(AUTH_KEY, 'true');
+                showContent();
+            } else {
+                passwordError.classList.remove('hidden');
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        });
+
+        // Check auth on page load
+        checkAuth();
+    </script>
+</body>
+</html>
