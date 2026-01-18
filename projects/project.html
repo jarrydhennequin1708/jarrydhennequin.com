@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project | Jarryd Hennequin</title>
+    <meta name="description" content="Product & AI leader helping ambitious teams build products that matter." />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/jarryd.png" />
+    <link rel="apple-touch-icon" href="../images/jarryd.png" />
+
+    <!-- Google Fonts - Rethink Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400&display=swap" rel="stylesheet" />
+
+    <!-- js-yaml for parsing frontmatter -->
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <!-- marked for parsing markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+      :root {
+        --bg: white;
+        --text: black;
+        --text-muted: #6b7280;
+        --surface: #f3f4f6;
+        --surface-hover: #e5e7eb;
+        --border: #e5e7eb;
+      }
+
+      [data-theme="dark"] {
+        --bg: #0a0a0a;
+        --text: white;
+        --text-muted: #9ca3af;
+        --surface: #1a1a1a;
+        --surface-hover: #2a2a2a;
+        --border: #2a2a2a;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Rethink Sans", sans-serif;
+        font-size: 40px;
+        letter-spacing: -1.5px;
+        line-height: 120%;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: 400;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Layout */
+      section,
+      header,
+      footer {
+        padding: 80px;
+      }
+
+      /* Header */
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 0;
+      }
+
+      header a:hover {
+        text-decoration: none;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-left: auto;
+      }
+
+      .mobile-menu {
+        display: none;
+        padding: 8px;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 24px;
+        border-radius: 9999px;
+        transition: background-color 0.2s;
+      }
+
+      .btn-primary {
+        background: var(--text);
+        color: var(--bg);
+      }
+
+      .btn-primary:hover {
+        opacity: 0.8;
+        text-decoration: none;
+      }
+
+      .btn-secondary {
+        background: var(--surface);
+      }
+
+      .btn-secondary:hover {
+        background: var(--surface-hover);
+        text-decoration: none;
+      }
+
+      /* Flex utilities */
+      .flex {
+        display: flex;
+      }
+
+      .flex-wrap {
+        flex-wrap: wrap;
+      }
+
+      .gap-16 {
+        gap: 16px;
+      }
+
+      .gap-24 {
+        gap: 24px;
+      }
+
+      .items-center {
+        align-items: center;
+      }
+
+      .items-start {
+        align-items: flex-start;
+      }
+
+      .justify-between {
+        justify-content: space-between;
+      }
+
+      /* Spacing */
+      .mb-16 {
+        margin-bottom: 16px;
+      }
+
+      .mb-24 {
+        margin-bottom: 24px;
+      }
+
+      .mb-48 {
+        margin-bottom: 48px;
+      }
+
+      .space-y-16 > * + * {
+        margin-top: 16px;
+      }
+
+      .space-y-24 > * + * {
+        margin-top: 24px;
+      }
+
+      .space-y-48 > * + * {
+        margin-top: 48px;
+      }
+
+      /* Colors */
+      .text-gray {
+        color: var(--text-muted);
+      }
+
+      /* Tags/Pills */
+      .tag {
+        padding: 16px 24px;
+        background: var(--surface);
+        border-radius: 9999px;
+      }
+
+      /* Icons */
+      .icon {
+        width: 48px;
+        height: 48px;
+        flex-shrink: 0;
+      }
+
+      .hover-arrow {
+        transition: transform 0.2s ease;
+      }
+
+      .btn:hover .hover-arrow {
+        transform: translate(2px, -2px);
+      }
+
+      /* Theme Toggle */
+      .theme-toggle {
+        padding: 16px;
+        background: var(--surface);
+        border: none;
+        border-radius: 9999px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s;
+        color: var(--text);
+      }
+
+      .theme-toggle:hover {
+        background: var(--surface-hover);
+      }
+
+      .theme-toggle .sun {
+        display: none;
+      }
+
+      .theme-toggle .moon {
+        display: block;
+      }
+
+      [data-theme="dark"] .theme-toggle .sun {
+        display: block;
+      }
+
+      [data-theme="dark"] .theme-toggle .moon {
+        display: none;
+      }
+
+      /* Back link */
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--text-muted);
+        margin-bottom: 48px;
+      }
+
+      .back-link:hover {
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .back-link .icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      /* Project Hero */
+      .project-hero {
+        padding-top: 0;
+      }
+
+      .project-title {
+        margin-bottom: 24px;
+      }
+
+      .project-description {
+        color: var(--text-muted);
+        margin-bottom: 48px;
+      }
+
+      .project-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        margin-bottom: 48px;
+      }
+
+      .project-image {
+        width: 100%;
+        margin-bottom: 80px;
+      }
+
+      /* Prose - Markdown Content */
+      .prose {
+        max-width: 100%;
+      }
+
+      .prose h2 {
+        font-size: 40px;
+        font-weight: 400;
+        margin-top: 80px;
+        margin-bottom: 24px;
+      }
+
+      .prose h2:first-child {
+        margin-top: 0;
+      }
+
+      .prose h3 {
+        font-size: 32px;
+        font-weight: 400;
+        margin-top: 48px;
+        margin-bottom: 16px;
+      }
+
+      .prose p {
+        font-size: 40px;
+        color: var(--text-muted);
+        margin-bottom: 24px;
+        line-height: 140%;
+      }
+
+      .prose ul {
+        font-size: 40px;
+        list-style-type: disc;
+        padding-left: 40px;
+        margin-bottom: 24px;
+      }
+
+      .prose ol {
+        font-size: 40px;
+        list-style-type: decimal;
+        padding-left: 40px;
+        margin-bottom: 24px;
+      }
+
+      .prose li {
+        font-size: 40px;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+        line-height: 140%;
+      }
+
+      /* Content under h3 sections should be 32px */
+      .prose .h3-section p,
+      .prose .h3-section ul,
+      .prose .h3-section ol,
+      .prose .h3-section li {
+        font-size: 32px;
+      }
+
+      .prose strong {
+        color: var(--text);
+        font-weight: 400;
+      }
+
+      .prose img {
+        width: 100%;
+        margin: 48px 0;
+      }
+
+      .prose a {
+        color: var(--text);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+
+      .prose a:hover {
+        color: var(--text-muted);
+      }
+
+      /* Scroll to top */
+      .scroll-top {
+        padding: 16px;
+        background: var(--surface);
+        border-radius: 9999px;
+        display: inline-flex;
+        transition: background-color 0.2s;
+      }
+
+      .scroll-top:hover {
+        background: var(--surface-hover);
+        text-decoration: none;
+      }
+
+      /* Password Overlay */
+      #password-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--bg);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #password-overlay.hidden {
+        display: none;
+      }
+
+      #main-content {
+        display: none;
+      }
+
+      #main-content.visible {
+        display: block;
+      }
+
+      #password-form input {
+        padding: 16px 24px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 9999px;
+        color: var(--text);
+        font-size: 24px;
+        width: 300px;
+      }
+
+      #password-form input:focus {
+        outline: none;
+        border-color: var(--text-muted);
+      }
+
+      #error-message {
+        color: #ef4444;
+        font-size: 24px;
+        margin-top: 16px;
+      }
+
+      /* Hidden utility */
+      .hidden {
+        display: none !important;
+      }
+
+      /* Loading State */
+      .loading-placeholder {
+        background: var(--surface);
+        border-radius: 8px;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        * {
+          font-size: 24px;
+        }
+
+        section,
+        header,
+        footer {
+          padding: 40px 24px;
+        }
+
+        nav {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: block;
+        }
+
+        .icon {
+          width: 32px;
+          height: 32px;
+        }
+
+        .prose h2 {
+          font-size: 28px;
+          margin-top: 48px;
+        }
+
+        .prose h3 {
+          font-size: 24px;
+        }
+
+        .prose .h3-section p,
+        .prose .h3-section ul,
+        .prose .h3-section ol,
+        .prose .h3-section li {
+          font-size: 24px;
+        }
+
+        .project-meta {
+          flex-direction: column;
+          gap: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Password Overlay -->
+    <div id="password-overlay">
+      <div style="text-align: center; padding: 24px;">
+        <h2 class="mb-24">Enter Password</h2>
+        <form id="password-form" class="space-y-16">
+          <input
+            type="password"
+            id="password-input"
+            placeholder="Password"
+            autocomplete="current-password"
+          />
+          <div>
+            <button type="submit" class="btn btn-primary">Enter</button>
+          </div>
+          <p id="error-message" class="hidden">Incorrect password</p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+      <!-- Header -->
+      <header>
+        <a href="../index.html">Jarryd Hennequin</a>
+
+        <div class="header-actions">
+          <nav>
+            <a href="../index.html#projects">Projects</a>
+            <a href="../index.html#services">Services</a>
+            <a href="../index.html#about">About</a>
+            <a
+              href="https://cal.com/jarryd-hennequin-hykdl0/15min"
+              target="_blank"
+              class="btn btn-primary"
+              >Book a call</a
+            >
+          </nav>
+
+          <button class="theme-toggle" aria-label="Toggle theme">
+            <svg
+              class="sun icon"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+              />
+            </svg>
+            <svg
+              class="moon icon"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              />
+            </svg>
+          </button>
+
+          <button class="mobile-menu">
+            <svg
+              class="icon"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Loading State -->
+      <div id="loading-state">
+        <section>
+          <div class="loading-placeholder" style="width: 120px; height: 32px; margin-bottom: 48px;"></div>
+          <div class="loading-placeholder" style="width: 80%; height: 48px; margin-bottom: 24px;"></div>
+          <div class="loading-placeholder" style="width: 100%; height: 32px; margin-bottom: 16px;"></div>
+          <div class="loading-placeholder" style="width: 60%; height: 32px;"></div>
+        </section>
+      </div>
+
+      <!-- Error State -->
+      <div id="error-state" class="hidden">
+        <section>
+          <a href="../index.html#work" class="back-link">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            <span>Back to Work</span>
+          </a>
+          <h1 class="mb-24">Project Not Found</h1>
+          <p class="text-gray">The project you're looking for doesn't exist or couldn't be loaded.</p>
+        </section>
+      </div>
+
+      <!-- Project Content -->
+      <div id="project-content" class="hidden">
+        <!-- Hero Section -->
+        <section class="project-hero">
+          <h1 id="project-title" class="project-title"></h1>
+          <p id="project-description" class="project-description"></p>
+
+          <div id="project-meta" class="project-meta flex flex-wrap gap-16">
+            <!-- Populated dynamically -->
+          </div>
+
+          <video id="project-video" class="project-image" autoplay loop muted playsinline style="display: none;"></video>
+          <img id="project-image" src="" alt="" class="project-image" />
+        </section>
+
+        <!-- Main Content -->
+        <section>
+          <div class="prose" id="project-body"></div>
+        </section>
+
+        <!-- Back to Projects Link -->
+        <section style="padding-top: 0;">
+          <a href="../index.html#projects" class="back-link">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            <span>Back to Projects</span>
+          </a>
+        </section>
+
+        <!-- CTA Section -->
+        <section>
+          <h2 class="mb-24">Let's work together</h2>
+          <p class="text-gray mb-24">
+            Whether you're unsure where to start with AI, stuck in manual processes
+            that won't scale, or ready to move fast on automation — let's talk.
+          </p>
+          <div class="flex flex-wrap gap-16">
+            <a
+              href="https://cal.com/jarryd-hennequin-hykdl0/15min"
+              target="_blank"
+              class="btn btn-primary"
+            >
+              <span>Book a call</span>
+              <svg
+                class="icon hover-arrow"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 17L17 7M17 7H7M17 7V17"
+                />
+              </svg>
+            </a>
+            <a href="mailto:hello@jarrydhennequin.com" class="btn btn-secondary">
+              <span>Send an email</span>
+            </a>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <footer>
+        <div class="space-y-24">
+          <div class="space-y-16">
+            <span>© 2025 Jarryd Hennequin</span>
+            <p>Melbourne, Australia</p>
+          </div>
+          <div class="space-y-16">
+            <a href="mailto:hello@jarrydhennequin.com">Email</a>
+            <a href="https://au.linkedin.com/in/jarryd-hennequin" target="_blank">LinkedIn</a>
+            <a href="https://www.youtube.com/@JarrydHennequin" target="_blank">YouTube</a>
+          </div>
+        </div>
+
+        <!-- Scroll to top arrow -->
+        <div style="margin-top: 24px">
+          <a href="#" class="scroll-top">
+            <svg
+              class="icon"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 10l7-7m0 0l7 7m-7-7v18"
+              />
+            </svg>
+          </a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // Theme toggle functionality
+      const themeToggle = document.querySelector(".theme-toggle");
+      const html = document.documentElement;
+
+      // Load saved theme or default to light
+      const savedTheme = localStorage.getItem("theme") || "light";
+      html.setAttribute("data-theme", savedTheme);
+
+      // Toggle theme on click
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = html.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+      });
+
+      // Password Protection
+      const CORRECT_PASSWORD = "password1";
+      const AUTH_KEY = "portfolio_authenticated";
+
+      function checkAuth() {
+        return localStorage.getItem(AUTH_KEY) === "true";
+      }
+
+      function showContent() {
+        document.getElementById("password-overlay").classList.add("hidden");
+        document.getElementById("main-content").classList.add("visible");
+      }
+
+      if (checkAuth()) {
+        showContent();
+      }
+
+      document.getElementById("password-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const password = document.getElementById("password-input").value;
+
+        if (password === CORRECT_PASSWORD) {
+          localStorage.setItem(AUTH_KEY, "true");
+          showContent();
+        } else {
+          document.getElementById("error-message").classList.remove("hidden");
+          document.getElementById("password-input").value = "";
+        }
+      });
+
+      // Project Loading
+      async function loadProject() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const slug = urlParams.get("slug");
+
+        if (!slug) {
+          showError();
+          return;
+        }
+
+        try {
+          const response = await fetch(`../content/projects/${slug}.md`);
+
+          if (!response.ok) {
+            throw new Error("Project not found");
+          }
+
+          const markdown = await response.text();
+          parseAndRenderProject(markdown);
+        } catch (error) {
+          console.error("Error loading project:", error);
+          showError();
+        }
+      }
+
+      function parseAndRenderProject(markdown) {
+        // Split frontmatter and body
+        const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+        const match = markdown.match(frontmatterRegex);
+
+        if (!match) {
+          showError();
+          return;
+        }
+
+        const frontmatterYaml = match[1];
+        const bodyMarkdown = match[2];
+
+        // Parse frontmatter
+        let frontmatter;
+        try {
+          frontmatter = jsyaml.load(frontmatterYaml);
+        } catch (error) {
+          console.error("Error parsing frontmatter:", error);
+          showError();
+          return;
+        }
+
+        // Update page title
+        document.title = `${frontmatter.title} | Jarryd Hennequin`;
+
+        // Update meta description
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc && frontmatter.description) {
+          metaDesc.setAttribute("content", frontmatter.description);
+        }
+
+        // Populate content
+        document.getElementById("project-title").textContent = frontmatter.title;
+        document.getElementById("project-description").textContent = frontmatter.description;
+
+        // Project meta (client, year, tags)
+        const metaContainer = document.getElementById("project-meta");
+        metaContainer.innerHTML = "";
+
+        if (frontmatter.client) {
+          metaContainer.innerHTML += `<span class="tag">${frontmatter.client}</span>`;
+        }
+        if (frontmatter.year) {
+          metaContainer.innerHTML += `<span class="tag">${frontmatter.year}</span>`;
+        }
+        if (frontmatter.tags && Array.isArray(frontmatter.tags)) {
+          frontmatter.tags.forEach((tag) => {
+            if (tag !== frontmatter.year) {
+              metaContainer.innerHTML += `<span class="tag">${tag}</span>`;
+            }
+          });
+        }
+
+        // Project video or image
+        const projectVideo = document.getElementById("project-video");
+        const projectImage = document.getElementById("project-image");
+
+        if (frontmatter.video) {
+          // Use video as hero
+          let videoSrc = frontmatter.video;
+          if (videoSrc.startsWith("/")) {
+            videoSrc = ".." + videoSrc;
+          }
+          projectVideo.src = videoSrc;
+          projectVideo.style.display = "block";
+          projectImage.style.display = "none";
+        } else if (frontmatter.image) {
+          // Handle relative paths
+          let imageSrc = frontmatter.image;
+          if (imageSrc.startsWith("/")) {
+            imageSrc = ".." + imageSrc;
+          }
+          projectImage.src = imageSrc;
+          projectImage.alt = frontmatter.title;
+          projectVideo.style.display = "none";
+        } else {
+          projectImage.style.display = "none";
+          projectVideo.style.display = "none";
+        }
+
+        // Parse and render markdown body
+        // Configure marked to handle image paths
+        const renderer = new marked.Renderer();
+        const originalImage = renderer.image.bind(renderer);
+        renderer.image = function (token) {
+          // Handle both old and new marked API
+          let href = typeof token === 'object' ? token.href : token;
+          let text = typeof token === 'object' ? token.text : arguments[2];
+          let title = typeof token === 'object' ? token.title : arguments[1];
+
+          // Handle relative paths
+          let src = href;
+          if (src && src.startsWith("/")) {
+            src = ".." + src;
+          }
+          return `<img src="${src}" alt="${text || ""}" title="${title || ""}" />`;
+        };
+
+        marked.use({ renderer: renderer });
+
+        const bodyHtml = marked.parse(bodyMarkdown);
+        document.getElementById("project-body").innerHTML = bodyHtml;
+
+        // Wrap content after h3 elements in h3-section divs
+        const prose = document.getElementById("project-body");
+        const children = Array.from(prose.children);
+        let currentSection = null;
+
+        children.forEach((child) => {
+          if (child.tagName === "H2") {
+            // Close any open h3-section when we hit an h2
+            currentSection = null;
+          } else if (child.tagName === "H3") {
+            // Start a new h3-section
+            currentSection = document.createElement("div");
+            currentSection.className = "h3-section";
+            child.after(currentSection);
+          } else if (currentSection && child.tagName !== "H3" && child.tagName !== "H2") {
+            // Move this element into the current h3-section
+            currentSection.appendChild(child);
+          }
+        });
+
+        // Show content, hide loading
+        document.getElementById("loading-state").classList.add("hidden");
+        document.getElementById("project-content").classList.remove("hidden");
+      }
+
+      function showError() {
+        document.getElementById("loading-state").classList.add("hidden");
+        document.getElementById("error-state").classList.remove("hidden");
+      }
+
+      // Load project when DOM is ready
+      document.addEventListener("DOMContentLoaded", loadProject);
+    </script>
+  </body>
+</html>

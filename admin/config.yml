@@ -22,9 +22,13 @@ collections:
     label: "Projects"
     folder: "content/projects"
     create: true
+    slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "Client", name: "client", widget: "string" }
+      - { label: "Tags", name: "tags", widget: "list", allow_add: true }
+      - { label: "Year", name: "year", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Featured Image", name: "image", widget: "image", required: false }
-      - { label: "URL", name: "url", widget: "string", required: false }
+      - { label: "Order", name: "order", widget: "number", default: 0, hint: "Lower numbers appear first" }
       - { label: "Body", name: "body", widget: "markdown" }
