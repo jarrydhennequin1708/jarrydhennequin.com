@@ -410,8 +410,25 @@
         border-radius: 0;
       }
 
-      /* Responsive */
-      @media (max-width: 768px) {
+      /* Responsive - Mobile first approach */
+
+      /* Mobile (up to 640px) */
+      @media (max-width: 640px) {
+        * {
+          font-size: 18px;
+          letter-spacing: -0.5px;
+        }
+
+        section,
+        header,
+        footer {
+          padding: 24px;
+        }
+
+        header {
+          padding-bottom: 0;
+        }
+
         nav {
           display: none;
         }
@@ -420,8 +437,255 @@
           display: block;
         }
 
+        .icon {
+          width: 24px;
+          height: 24px;
+        }
+
+        .btn {
+          padding: 12px 16px;
+          gap: 8px;
+        }
+
+        .tag {
+          padding: 10px 16px;
+        }
+
+        .theme-toggle {
+          padding: 12px;
+        }
+
+        .scroll-top {
+          padding: 12px;
+        }
+
         .about-grid {
           grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .logo-carousel-track {
+          gap: 40px;
+          margin-top: 40px;
+          margin-bottom: 40px;
+        }
+
+        .client-logo,
+        .tool-logo {
+          height: 24px;
+        }
+
+        .mb-16 {
+          margin-bottom: 12px;
+        }
+
+        .mb-24 {
+          margin-bottom: 16px;
+        }
+
+        .space-y-16 > * + * {
+          margin-top: 12px;
+        }
+
+        .space-y-24 > * + * {
+          margin-top: 16px;
+        }
+
+        .gap-16 {
+          gap: 12px;
+        }
+
+        .gap-24 {
+          gap: 16px;
+        }
+
+        .project-image {
+          margin-bottom: 12px;
+        }
+      }
+
+      /* Tablet (641px to 1024px) */
+      @media (min-width: 641px) and (max-width: 1024px) {
+        * {
+          font-size: 26px;
+          letter-spacing: -1px;
+        }
+
+        section,
+        header,
+        footer {
+          padding: 48px;
+        }
+
+        header {
+          padding-bottom: 0;
+        }
+
+        nav {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: block;
+        }
+
+        .icon {
+          width: 32px;
+          height: 32px;
+        }
+
+        .btn {
+          padding: 14px 20px;
+          gap: 12px;
+        }
+
+        .tag {
+          padding: 12px 20px;
+        }
+
+        .theme-toggle {
+          padding: 14px;
+        }
+
+        .scroll-top {
+          padding: 14px;
+        }
+
+        .about-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+        }
+
+        .logo-carousel-track {
+          gap: 60px;
+          margin-top: 60px;
+          margin-bottom: 60px;
+        }
+
+        .client-logo,
+        .tool-logo {
+          height: 28px;
+        }
+
+        .mb-16 {
+          margin-bottom: 14px;
+        }
+
+        .mb-24 {
+          margin-bottom: 20px;
+        }
+
+        .space-y-16 > * + * {
+          margin-top: 14px;
+        }
+
+        .space-y-24 > * + * {
+          margin-top: 20px;
+        }
+
+        .gap-16 {
+          gap: 14px;
+        }
+
+        .gap-24 {
+          gap: 20px;
+        }
+      }
+
+      /* Desktop (1025px to 1440px) - Base styles apply */
+      @media (min-width: 1025px) and (max-width: 1440px) {
+        * {
+          font-size: 32px;
+          letter-spacing: -1.2px;
+        }
+
+        section,
+        header,
+        footer {
+          padding: 60px;
+        }
+
+        header {
+          padding-bottom: 0;
+        }
+
+        nav {
+          display: flex;
+        }
+
+        .mobile-menu {
+          display: none;
+        }
+
+        .icon {
+          width: 40px;
+          height: 40px;
+        }
+
+        .client-logo,
+        .tool-logo {
+          height: 32px;
+        }
+
+        .logo-carousel-track {
+          gap: 60px;
+          margin-top: 60px;
+          margin-bottom: 60px;
+        }
+      }
+
+      /* Large Desktop (1441px and up) */
+      @media (min-width: 1441px) {
+        * {
+          font-size: 40px;
+          letter-spacing: -1.5px;
+        }
+
+        section,
+        header,
+        footer {
+          padding: 80px;
+          max-width: 1800px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        header {
+          padding-bottom: 0;
+        }
+
+        nav {
+          display: flex;
+        }
+
+        .mobile-menu {
+          display: none;
+        }
+
+        .icon {
+          width: 48px;
+          height: 48px;
+        }
+
+        .client-logo,
+        .tool-logo {
+          height: 36px;
+        }
+
+        .logo-carousel-track {
+          gap: 80px;
+          margin-top: 80px;
+          margin-bottom: 80px;
+        }
+      }
+
+      /* Extra large screens (2000px+) - constrain content width */
+      @media (min-width: 2000px) {
+        section,
+        header,
+        footer {
+          max-width: 2000px;
+          padding: 100px 120px;
         }
       }
     </style>
@@ -507,13 +771,14 @@
     <!-- Contact & Social Links -->
     <section>
       <div class="flex flex-wrap gap-24">
-        <a href="mailto:hello@jarrydhennequin.com" class="btn btn-secondary">
+        <a href="mailto:hello@jarrydhennequin.com" class="btn btn-secondary" onclick="window.location.href='mailto:hello@jarrydhennequin.com'; return true;">
           <span>Email</span>
           <svg
             class="icon hover-arrow"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            style="pointer-events: none;"
           >
             <path
               stroke-linecap="round"
@@ -593,28 +858,29 @@
         <li>
           <strong>Discovery & Prioritisation</strong>
           <p style="color: #9ca3af">
-            I'll spend a week or two looking at how your team actually works
-            day-to-day, identify where you're losing the most time to repetitive
-            tasks, and show you exactly which automations will give you the
-            biggest return. You'll walk away knowing precisely what to tackle
-            first and why.
+            Together, we'll spend a week or two examining how your team actually
+            works day-to-day, pinpointing where repetitive tasks consume the
+            most time, and mapping out exactly which automations will deliver
+            the biggest return. You'll walk away with a clear action plan and
+            the reasoning behind every priority.
           </p>
         </li>
         <li>
           <strong>AI Innovation Sprint</strong>
           <p style="color: #9ca3af">
-            I pick one problem that's slowing your team down, and in four weeks
-            I build a working solution, train your people to use it, and show
-            them how to maintain it. No theory, no waiting – just results.
+            We identify one problem that's slowing your team down, and over four
+            weeks we build a working solution together, train your people to use
+            it, and ensure they can maintain it independently. No theory, no
+            waiting – just results.
           </p>
         </li>
         <li>
           <strong>Implementation & Operations</strong>
           <p style="color: #9ca3af">
-            Think of this as having an automation expert on retainer. I build
-            new solutions, keep existing ones running smoothly, and continuously
-            look for ways to save your team more time. Every month, I show you
-            exactly how much time and money you're saving.
+            Think of this as having an automation partner on retainer. We build
+            new solutions together, keep existing ones running smoothly, and
+            continuously explore ways to save your team more time. Every month,
+            we review exactly how much time and money you're saving.
           </p>
         </li>
       </ul>
@@ -1434,7 +1700,7 @@
             />
           </svg>
         </a>
-        <a href="mailto:hello@jarrydhennequin.com" class="btn btn-secondary">
+        <a href="mailto:hello@jarrydhennequin.com" class="btn btn-secondary" onclick="window.location.href='mailto:hello@jarrydhennequin.com'; return true;">
           <span>Send an email</span>
         </a>
       </div>
@@ -1448,7 +1714,7 @@
           <p>Melbourne, Australia</p>
         </div>
         <div class="space-y-16">
-          <a href="mailto:hello@jarrydhennequin.com">Email</a>
+          <a href="mailto:hello@jarrydhennequin.com" onclick="window.location.href='mailto:hello@jarrydhennequin.com'; return true;">Email</a>
           <a href="https://au.linkedin.com/in/jarryd-hennequin" target="_blank"
             >LinkedIn</a
           >
