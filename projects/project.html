@@ -6,9 +6,27 @@
     <title>Project | Jarryd Hennequin</title>
     <meta name="description" content="Product & AI leader helping ambitious teams build products that matter." />
 
+    <!-- Open Graph / Facebook (updated dynamically) -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://jarrydhennequin.com/projects/" />
+    <meta property="og:title" content="Project | Jarryd Hennequin" />
+    <meta property="og:description" content="Product & AI leader helping ambitious teams build products that matter." />
+    <meta property="og:image" content="https://jarrydhennequin.com/images/jarryd.mp4" />
+    <meta property="og:locale" content="en_AU" />
+
+    <!-- Twitter Card (updated dynamically) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://jarrydhennequin.com/projects/" />
+    <meta name="twitter:title" content="Project | Jarryd Hennequin" />
+    <meta name="twitter:description" content="Product & AI leader helping ambitious teams build products that matter." />
+    <meta name="twitter:image" content="https://jarrydhennequin.com/images/jarryd.mp4" />
+
+    <!-- Canonical URL (updated dynamically) -->
+    <link rel="canonical" href="https://jarrydhennequin.com/projects/" />
+
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../images/jarryd.png" />
-    <link rel="apple-touch-icon" href="../images/jarryd.png" />
+    <link rel="icon" type="video/mp4" href="../images/jarryd.mp4" />
+    <link rel="apple-touch-icon" href="../images/jarryd.mp4" />
 
     <!-- Google Fonts - Rethink Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -220,9 +238,12 @@
 
       /* Tags/Pills */
       .tag {
-        padding: 16px 24px;
+        display: inline-block;
+        padding: 12px 20px;
         background: var(--surface);
         border-radius: 9999px;
+        font-size: 20px;
+        white-space: nowrap;
       }
 
       /* Icons */
@@ -309,8 +330,9 @@
 
       .project-meta {
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
-        gap: 24px;
+        gap: 12px;
         margin-bottom: 48px;
       }
 
@@ -480,16 +502,65 @@
         }
       }
 
-      /* Responsive */
-      @media (max-width: 768px) {
+      /* Responsive - Tablet */
+      @media (max-width: 1024px) {
         * {
-          font-size: 24px;
+          font-size: 28px;
         }
 
         section,
         header,
         footer {
-          padding: 40px 24px;
+          padding: 60px 48px;
+        }
+
+        .project-title {
+          font-size: 32px;
+        }
+
+        .project-description {
+          font-size: 22px;
+        }
+
+        .tag {
+          font-size: 16px;
+          padding: 10px 16px;
+        }
+
+        .prose h2 {
+          font-size: 28px;
+          margin-top: 60px;
+        }
+
+        .prose h3 {
+          font-size: 22px;
+        }
+
+        .prose p,
+        .prose ul,
+        .prose ol,
+        .prose li {
+          font-size: 18px;
+        }
+
+        .prose .h3-section p,
+        .prose .h3-section ul,
+        .prose .h3-section ol,
+        .prose .h3-section li {
+          font-size: 16px;
+        }
+      }
+
+      /* Responsive - Mobile */
+      @media (max-width: 768px) {
+        * {
+          font-size: 20px;
+        }
+
+        section,
+        header,
+        footer {
+          padding: 32px 20px;
         }
 
         nav {
@@ -501,29 +572,54 @@
         }
 
         .icon {
-          width: 32px;
-          height: 32px;
+          width: 24px;
+          height: 24px;
+        }
+
+        .project-title {
+          font-size: 28px;
+        }
+
+        .project-description {
+          font-size: 16px;
+        }
+
+        .tag {
+          font-size: 14px;
+          padding: 8px 14px;
+        }
+
+        .project-meta {
+          gap: 8px;
         }
 
         .prose h2 {
-          font-size: 28px;
-          margin-top: 48px;
+          font-size: 22px;
+          margin-top: 40px;
         }
 
         .prose h3 {
-          font-size: 24px;
+          font-size: 18px;
+          margin-top: 32px;
+        }
+
+        .prose p,
+        .prose ul,
+        .prose ol,
+        .prose li {
+          font-size: 15px;
         }
 
         .prose .h3-section p,
         .prose .h3-section ul,
         .prose .h3-section ol,
         .prose .h3-section li {
-          font-size: 24px;
+          font-size: 14px;
         }
 
-        .project-meta {
-          flex-direction: column;
-          gap: 16px;
+        .btn {
+          padding: 12px 18px;
+          gap: 10px;
         }
       }
     </style>
@@ -840,6 +936,29 @@
         const metaDesc = document.querySelector('meta[name="description"]');
         if (metaDesc && frontmatter.description) {
           metaDesc.setAttribute("content", frontmatter.description);
+        }
+
+        // Update Open Graph meta tags
+        const urlParams = new URLSearchParams(window.location.search);
+        const slug = urlParams.get("slug");
+        const projectUrl = `https://jarrydhennequin.com/projects/project.html?slug=${slug}`;
+
+        document.querySelector('meta[property="og:title"]')?.setAttribute("content", `${frontmatter.title} | Jarryd Hennequin`);
+        document.querySelector('meta[property="og:description"]')?.setAttribute("content", frontmatter.description || "");
+        document.querySelector('meta[property="og:url"]')?.setAttribute("content", projectUrl);
+
+        document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", `${frontmatter.title} | Jarryd Hennequin`);
+        document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", frontmatter.description || "");
+        document.querySelector('meta[name="twitter:url"]')?.setAttribute("content", projectUrl);
+
+        // Update canonical URL
+        document.querySelector('link[rel="canonical"]')?.setAttribute("href", projectUrl);
+
+        // Update OG image if project has an image
+        if (frontmatter.image) {
+          const imageUrl = `https://jarrydhennequin.com${frontmatter.image}`;
+          document.querySelector('meta[property="og:image"]')?.setAttribute("content", imageUrl);
+          document.querySelector('meta[name="twitter:image"]')?.setAttribute("content", imageUrl);
         }
 
         // Populate content
